@@ -1,0 +1,7 @@
+---
+- name: Install ca-certificates
+  apt:
+    name: ca-certificates
+    state: "latest"
+    cache_valid_time: 3600
+

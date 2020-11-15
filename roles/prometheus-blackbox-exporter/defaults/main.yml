@@ -1,0 +1,19 @@
+---
+
+prometheus_blackbox_exporter_version: 0.18.0
+default_architecture: arm64
+prometheus_blackbox_exporter_release_name: blackbox_exporter-{{ prometheus_blackbox_exporter_version }}.linux-{{ default_architecture }}
+
+prometheus_blackbox_exporter_listen_address: '0.0.0.0:9115'
+
+prometheus_blackbox_exporter_config_flags:
+  'web.listen-address': '{{ prometheus_blackbox_exporter_listen_address }}'
+  'log.level': 'info'
+  'config.file': '/etc/blackbox/blackbox.yml'
+
+prometheus_blackbox_exporter_user: prometheus
+prometheus_blackbox_exporter_user_uid: null
+prometheus_blackbox_exporter_group: "{{prometheus_blackbox_exporter_user}}"
+prometheus_blackbox_exporter_group_gid: null
+
+prometheus_blackbox_exporter_reinstall: false

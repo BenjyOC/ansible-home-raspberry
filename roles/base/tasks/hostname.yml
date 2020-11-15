@@ -1,0 +1,9 @@
+---
+- hostname:
+    name: "{{ hostname }}"
+
+- name: fqdns
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.0\.1\s'
+    line: "127.0.0.1 {{ hostname }} localhost"

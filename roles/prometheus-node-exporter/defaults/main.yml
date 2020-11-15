@@ -1,0 +1,37 @@
+---
+
+prometheus_node_exporter_version: 1.0.1
+default_architecture: arm64
+prometheus_node_exporter_release_name: node_exporter-{{ prometheus_node_exporter_version }}.linux-{{ default_architecture }}
+
+# https://github.com/prometheus/node_exporter#enabled-by-default
+prometheus_node_exporter_enabled_collectors:
+  - conntrack
+  - diskstats
+  - entropy
+  - filefd
+  - filesystem
+  - loadavg
+  - mdadm
+  - meminfo
+  - netdev
+  - netstat
+  - stat
+  - textfile
+  - time
+  - vmstat
+
+prometheus_node_exporter_listen_address: '0.0.0.0:9100'
+
+prometheus_node_exporter_config_flags:
+  'web.listen-address': '{{ prometheus_node_exporter_listen_address }}'
+  'log.level': 'info'
+  'collector.diskstats.ignored-devices': '^(ram|loop|fd)\d+$'
+  'collector.filesystem.ignored-mount-points': '^/(sys|proc|dev|run)($|/)'
+
+prometheus_node_exporter_user: prometheus
+prometheus_node_exporter_user_uid: null
+prometheus_node_exporter_group: "{{prometheus_node_exporter_user}}"
+prometheus_node_exporter_group_gid: null
+
+prometheus_node_exporter_reinstall: false

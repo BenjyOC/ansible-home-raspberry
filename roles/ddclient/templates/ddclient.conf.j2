@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+
+protocol={{ ddclient_protocol }}
+use={{ ddclient_method }}, if={{ ddclient_interface }}
+server={{ ddclient_server }}
+login={{ ddclient_login }}
+password='{{ ovh_password }}'
+{{ ddclient_subdomain }}

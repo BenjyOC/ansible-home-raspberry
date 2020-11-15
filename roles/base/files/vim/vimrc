@@ -1,0 +1,18 @@
+" standard
+set paste
+set noai
+set nocompatible
+set hlsearch
+set background=dark
+set mouse=a
+set showcmd
+set showmatch
+set ignorecase
+set smartcase
+
+" color
+syntax on
+color darkblue
+
+" tabs
+set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab 

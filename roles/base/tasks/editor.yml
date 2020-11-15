@@ -1,0 +1,12 @@
+---
+- name: Configure vim
+  copy:
+    src: vim/vimrc
+    dest: /etc/vim/vimrc
+    owner: root
+    group: root
+    mode: 0444
+
+- name: Configure vim as default editor
+  command: update-alternatives --set editor /usr/bin/vim.basic
+  changed_when: false

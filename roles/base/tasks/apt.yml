@@ -1,0 +1,7 @@
+---
+- name: Install apt module dependencies
+  apt:
+    name:
+      - apt-transport-https
+      - gpg
+    cache_valid_time: 3600

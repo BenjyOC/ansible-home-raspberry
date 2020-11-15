@@ -1,0 +1,75 @@
+---
+
+- name: Check if blackbox_exporter is already installed
+  stat: path=/usr/local/bin/blackbox_exporter
+  register: blackbox_exporter_installed
+
+- name: group prometheus
+  group:
+    name: "{{prometheus_blackbox_exporter_group}}"
+    gid: "{{prometheus_blackbox_exporter_group_gid}}"
+
+- name: user prometheus
+  user:
+    name: "{{prometheus_blackbox_exporter_user}}"
+    uid: "{{prometheus_blackbox_exporter_user_uid}}"
+    group: "{{prometheus_blackbox_exporter_group}}"
+    shell: /bin/false
+    createhome: false
+
+- name: install or update prometheus-blackbox-exporter
+  when: not blackbox_exporter_installed.stat.exists or prometheus_blackbox_exporter_reinstall
+  block:
+    - name: Remove blackbox_exporter archive file if exist
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - "/tmp/{{ prometheus_blackbox_exporter_release_name }}.tar.gz"
+        - "/tmp/{{ prometheus_blackbox_exporter_release_name }}"
+
+    - name: Download blackbox_exporter archive
+      get_url:
+        url: "{{ url }}"
+        dest: "/tmp/{{ prometheus_blackbox_exporter_release_name }}.tar.gz"
+
+    - name: Unarchive blackbox_exporter
+      unarchive:
+        src: "/tmp/{{ prometheus_blackbox_exporter_release_name }}.tar.gz"
+        dest: /tmp
+        remote_src: true
+
+    - name: Move blackbox_exporter file
+      copy:
+        remote_src: true
+        src: "/tmp//blackbox_exporter-{{ prometheus_blackbox_exporter_version }}.linux-{{ default_architecture }}/blackbox_exporter"
+        dest: /usr/local/bin/blackbox_exporter
+        mode: 0755
+      notify:
+        - Restart blackbox_exporter
+
+- name: Create blackbox_exporter systemd unit file
+  template:
+    src: prometheus-blackbox-exporter.service.j2
+    dest: /etc/systemd/system/prometheus-blackbox-exporter.service
+  notify:
+    - Reload blackbox_exporter
+
+- name: Create blackbox_exporter config directory
+  file:
+    path: /etc/blackbox
+    state: directory
+
+- name: Create blackbox_exporter config file
+  template:
+    src: prometheus-blackbox.yml.j2
+    dest: /etc/blackbox/blackbox.yml
+  notify:
+    - Reload blackbox_exporter
+
+- name: Enable and start the exporter
+  systemd:
+    daemon_reload: true
+    name: prometheus-blackbox-exporter
+    state: started
+    enabled: true

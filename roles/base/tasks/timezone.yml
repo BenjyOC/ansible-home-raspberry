@@ -1,0 +1,8 @@
+---
+- name: Configure /etc/timezone
+  copy:
+    content: 'Europe/Paris'
+    dest: /etc/timezone
+    owner: root
+    group: root
+    mode: 0444

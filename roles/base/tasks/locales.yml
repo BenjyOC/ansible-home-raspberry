@@ -1,0 +1,11 @@
+---
+- name: install locales
+  apt:
+    name: locales
+
+- name: locale-gen
+  locale_gen:
+    name: "{{ item }}"
+  loop:
+    - en_US.UTF-8
+    - fr_FR.UTF-8

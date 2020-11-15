@@ -1,0 +1,23 @@
+modules:
+  http_check:
+    prober: http
+    timeout: 5s
+    http:
+      valid_status_codes: [] # par defaut, 2XX
+      method: GET
+      fail_if_body_matches_regexp:
+        - "Body matches regexp"
+      fail_if_body_not_matches_regexp:
+        - "Body not matches regexp"
+  icmp_check:
+    prober: icmp
+    timeout: 5s
+    icmp:
+      preferred_ip_protocol: ip4
+  dns_check_soa:
+    prober: dns
+    timeout: 5s
+    dns:
+      preferred_ip_protocol: ip4
+      query_name: "bracloud.services"
+      query_type: "SOA"

@@ -1,0 +1,3 @@
+---
+
+url: "https://github.com/prometheus/blackbox_exporter/releases/download/v{{ prometheus_blackbox_exporter_version }}/{{ prometheus_blackbox_exporter_release_name }}.tar.gz"
