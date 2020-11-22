@@ -1,0 +1,11 @@
+---
+- name: restart postfix
+  service: name=postfix state=restarted
+
+- name: reload postfix
+  service: name=postfix state=reloaded
+
+- name: postmap sasl_passwd
+  command: |
+    postmap "{{ postfix_parameters.smtp_sasl_password_maps.split(':')[0] }}:/etc/postfix/sasl_passwd"
+  when: postfix_parameters.smtp_sasl_password_maps.split(':')[0] in postfix_databases

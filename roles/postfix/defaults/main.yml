@@ -1,0 +1,10 @@
+---
+postfix_service_state: started
+postfix_service_enabled: true
+postfix_config_file: /etc/postfix/main.cf
+postfix_parameters:
+  inet_interfaces: localhost
+  inet_protocols: all
+  mynetworks:
+    - 127.0.0.0/8
+  smtp_sasl_auth_enable: yes
