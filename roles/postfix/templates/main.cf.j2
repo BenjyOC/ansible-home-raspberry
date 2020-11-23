@@ -18,13 +18,6 @@ smtp_tls_CApath=/etc/ssl/certs
 smtp_tls_security_level=may
 smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 
-smtp_use_tls = yes
-smtp_sasl_auth_enable = yes
-{% if postfix_parameters.smtp_sasl_password_maps %}
-smtp_sasl_password_maps = {{ postfix_parameters.smtp_sasl_password_maps  }}
-{% endif %}
-smtp_sasl_security_options = noanonymous
-
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
 myhostname = pi-01.home
 alias_maps = hash:/etc/aliases
@@ -34,15 +27,15 @@ mailbox_size_limit = 0
 recipient_delimiter = +
 {% if postfix_parameters|length > 0 %}
 
-{%   for key, value in postfix_parameters.items()|sort %}
-{%     if value is sameas true %}
+{% for key, value in postfix_parameters.items()|sort %}
+{% if value is sameas true %}
 {{ key }} = yes
-{%     elif value is sameas false %}
+{% elif value is sameas false %}
 {{ key }} = no
-{%     elif value is string or value is number %}
+{% elif value is string or value is number %}
 {{ key }} = {{ value }}
-{%     else %}
+{% else %}
 {{ key }} = {{ value|join(', ') }}
-{%     endif %}
-{%   endfor %}
+{% endif %}
+{% endfor %}
 {% endif %}

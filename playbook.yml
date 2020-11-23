@@ -27,11 +27,18 @@
               6337656231646263360a396665383436643238336138633231326363373731303166336362663032
               3139
     postfix_parameters:
-      relayhost: smtp.orange.fr
+      relayhost: smtp.orange.fr:587
       smtp_sasl_password_maps: hash:/etc/postfix/sasl_passwd
+      inet_interfaces: localhost
+      inet_protocols: all
+      mynetworks:
+        - 127.0.0.0/8
+      smtp_sasl_auth_enable: yes
+      smtp_use_tls: true
+      smtp_sasl_security_options: noanonymous
   roles:
     - postfix
-#    - base
-#    - prometheus-blackbox-exporter
-#    - prometheus-node-exporter
-#    - ddclient
+    - base
+    - prometheus-blackbox-exporter
+    - prometheus-node-exporter
+    - ddclient

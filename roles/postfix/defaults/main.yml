@@ -7,4 +7,7 @@ postfix_parameters:
   inet_protocols: all
   mynetworks:
     - 127.0.0.0/8
-  smtp_sasl_auth_enable: yes
+  smtp_sasl_auth_enable: true
+  smtp_use_tls: true
+  smtp_sasl_security_options: noanonymous
+
