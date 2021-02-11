@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: pi-01
   become: yes
   vars:
     hostname: pi-01

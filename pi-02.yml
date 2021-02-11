@@ -1,0 +1,7 @@
+---
+- hosts: pi-02
+  become: yes
+  vars:
+    hostname: pi-02
+  roles:
+    - base
