@@ -37,8 +37,8 @@
       smtp_use_tls: true
       smtp_sasl_security_options: noanonymous
   roles:
-    - postfix
     - base
+    - ddclient
+    - postfix
     - prometheus-blackbox-exporter
     - prometheus-node-exporter
-    - ddclient

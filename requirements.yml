@@ -1,0 +1,25 @@
+---
+- name: base
+  src: git@github.com:BenjyOC/ansible-base-setup.git
+  scm: git
+  version: master
+
+- name: ddclient
+  src: git@github.com:BenjyOC/ansible-ddclient.git
+  scm: git
+  version: master
+
+- name: postfix
+  src: git@github.com:BenjyOC/ansible-postfix.git
+  scm: git
+  version: master
+
+- name: prometheus-node-exporter
+  src: git@github.com:BenjyOC/ansible-prometheus-node-exporter.git
+  scm: git
+  version: master
+
+- name: prometheus-blackbox-exporter
+  src: git@github.com:BenjyOC/ansible-prometheus-blackbox-exporter.git
+  scm: git
+  version: master

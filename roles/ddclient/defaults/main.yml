@@ -1,4 +1,0 @@
-ddclient_interface: eth0
-ddclient_method: web
-ddclient_protocol: dyndns2
-ddclient_server: www.ovh.com
