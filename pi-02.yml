@@ -4,5 +4,6 @@
   vars:
     hostname: pi-02
   roles:
+    - base
+    - helm
     - kubectl
-    #- base
