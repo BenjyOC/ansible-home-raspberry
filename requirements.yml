@@ -23,3 +23,8 @@
   src: git@github.com:BenjyOC/ansible-prometheus-blackbox-exporter.git
   scm: git
   version: master
+
+- name: kubectl
+  src: git@github.com:BenjyOC/ansible-kubectl.git
+  scm: git
+  version: master
