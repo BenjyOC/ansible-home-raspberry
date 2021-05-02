@@ -1,6 +1,7 @@
 ---
 - hosts: pi-01
   become: yes
+  remote_user: ubuntu
   vars:
     hostname: pi-01
     ddclient_login: bracloud.services-dns

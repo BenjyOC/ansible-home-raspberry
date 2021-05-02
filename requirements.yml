@@ -33,3 +33,8 @@
   src: git@github.com:BenjyOC/ansible-helm.git
   scm: git
   version: master
+
+- name: wireguard
+  src: git@github.com:BenjyOC/ansible-wireguard.git
+  scm: git
+  version: master
