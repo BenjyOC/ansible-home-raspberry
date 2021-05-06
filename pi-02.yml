@@ -4,7 +4,14 @@
   remote_user: ubuntu
   vars:
     hostname: pi-02
+    wireguard_address: 10.8.0.2
+    wireguard_unmanaged_peers:
+      bracloud:
+        public_key: mNCvEJQrf6czbqMWZD1sYWDwDmXskWEDSPza76EAQ3o=
+        allowed_ips: 10.8.0.0/24
+        endpoint: bracloud.services:51820
   roles:
+    - wireguard
     - base
     - helm
     - kubectl

@@ -37,7 +37,14 @@
       smtp_sasl_auth_enable: yes
       smtp_use_tls: true
       smtp_sasl_security_options: noanonymous
+    wireguard_address: 10.8.0.3
+    wireguard_unmanaged_peers:
+      bracloud:
+        public_key: mNCvEJQrf6czbqMWZD1sYWDwDmXskWEDSPza76EAQ3o=
+        allowed_ips: 10.8.0.0/24
+        endpoint: bracloud.services:51820
   roles:
+    - wireguard
     - base
     - ddclient
     - postfix
