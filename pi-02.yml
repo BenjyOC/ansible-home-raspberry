@@ -4,7 +4,7 @@
   remote_user: ubuntu
   vars:
     hostname: pi-02
-    wireguard_address: 10.8.0.2
+    wireguard_address: 10.8.0.3
     wireguard_unmanaged_peers:
       bracloud:
         public_key: mNCvEJQrf6czbqMWZD1sYWDwDmXskWEDSPza76EAQ3o=

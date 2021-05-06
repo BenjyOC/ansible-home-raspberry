@@ -37,7 +37,7 @@
       smtp_sasl_auth_enable: yes
       smtp_use_tls: true
       smtp_sasl_security_options: noanonymous
-    wireguard_address: 10.8.0.3
+    wireguard_address: 10.8.0.2
     wireguard_unmanaged_peers:
       bracloud:
         public_key: mNCvEJQrf6czbqMWZD1sYWDwDmXskWEDSPza76EAQ3o=
